@@ -88,7 +88,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Línea</label>
-                    <input type="text" name="linea" placeholder="Ej: A-1" 
+                    <input type="number" name="linea" placeholder="000" 
                            class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
                 </div>
             </div>
@@ -183,7 +183,7 @@
             const btn = document.getElementById('btnEnviar');
             
             // TU URL DE GOOGLE APPS SCRIPT YA INTEGRADA
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyIj9CaYsgDYlLcep96mW2pmC_CHWV2-is-g6j_vV9yxqweR8iNCl3DhUtVUBobu1v/exec';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbypV1Fl1OWa8ycCqLsi8beZqijDMXKEOdaCct_H9CdGYvah6levgEDlZPK-pfIUbl8/exec';
 
             btn.disabled = true;
             btn.innerText = "PROCESANDO...";
@@ -195,12 +195,16 @@
             const data = Object.fromEntries(formData.entries());
             data.acompanantes = formData.getAll('acompanantes[]');
 
+            console.log('Datos a enviar:', data);
+
             try {
-                // Usamos fetch con timeout y no-cors para Google Script
                 await Promise.race([
                     fetch(WEB_APP_URL, {
                         method: 'POST',
                         mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
                         body: JSON.stringify(data)
                     }),
                     new Promise((_, reject) => setTimeout(() => reject(new Error('Tiempo de espera agotado')), 15000))
