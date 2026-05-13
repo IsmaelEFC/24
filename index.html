@@ -2,78 +2,61 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro OS9 Araucanía</title>
     
-    <!-- Configuración para modo App (PWA) -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Planilla OS9">
+    <!-- Configuración para PWA -->
+    <meta name="theme-color" content="#14532d">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#1e40af">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
+    <!-- Manifiesto -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlJlZ2lzdHJvIE9TOSBBcmF1Y2Fuw61hIiwKICAic2hvcnRfbmFtZSI6ICJPUzkiLAogICJzdGFydF91cmwiOiAiaW5kZXguaHRtbCIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YwZjRmMCIsCiAgInRoZW1lX2NvbG9yIjogIiMxNDUzMmQiLAogICJpY29ucyI6IFt7CiAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzEwMjIvMTAyMjIxMy5wbmciLAogICAgInNpemVzIjogIjUxMng1MTIiLAogICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogIH1dCn0=">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f8fafc; 
-            -webkit-tap-highlight-color: transparent;
-        }
-        .form-card {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-        select, input {
-            font-size: 16px !important; /* Evita zoom automático en iPhone al enfocar */
-        }
-        .btn-animate:active {
-            transform: scale(0.96);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f0; }
+        .bg-institucional { background-color: #14532d; }
     </style>
 </head>
-<body class="min-h-screen p-4 flex flex-col items-center">
+<body class="p-4 flex flex-col items-center">
 
-    <div class="w-full max-w-md bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 form-card">
-        <div class="bg-green-800 p-8 text-white text-center">
-            <h1 class="text-2xl font-bold tracking-tight uppercase">Planilla de Servicios 24%</h1>
-            <p class="text-green-500 text-xs mt-1 font-medium tracking-widest">SECCIÓN OS9 ARAUCANÍA</p>
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-green-100">
+        <div class="bg-institucional p-6 text-white text-center">
+            <h1 class="text-xl font-bold tracking-tighter uppercase">Planilla de Servicios</h1>
+            <p class="text-green-200 text-[10px] font-semibold mt-1 tracking-widest uppercase">Sección OS9 Araucanía</p>
         </div>
 
-        <form id="planillaForm" class="p-6 space-y-5">
-            
+        <form id="planillaForm" class="p-6 space-y-4">
+            <!-- Los campos del formulario se mantienen iguales -->
             <div>
-                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Sección</label>
-                <input type="text" value="Sección OS9 Araucanía" readonly 
-                       class="w-full p-4 bg-gray-50 rounded-2xl text-gray-500 font-semibold border-none cursor-not-allowed">
+                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">Unidad</label>
+                <input type="text" value="Sección OS9 Araucanía" readonly class="w-full p-3 bg-gray-50 rounded-xl text-gray-500 font-medium border-none text-sm">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Jefe de Patrulla</label>
-                <select name="jefe" id="selectJefe" required 
-                        class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 focus:ring-2 focus:ring-blue-500 transition-all outline-none appearance-none">
-                </select>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Jefe de Patrulla</label>
+                <select name="jefe" id="selectJefe" required class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 focus:ring-2 focus:ring-green-600 text-sm"></select>
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Acompañantes</label>
-                <div id="contenedorAcompanantes" class="space-y-3"></div>
-                <button type="button" onclick="agregarAcompanante()" 
-                        class="mt-3 text-green-700 text-xs font-bold flex items-center hover:opacity-80 transition-opacity">
-                    <span class="bg-green-100 p-1.5 rounded-full mr-2">＋</span> AÑADIR ACOMPAÑANTE
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Acompañantes</label>
+                <div id="contenedorAcompanantes" class="space-y-2"></div>
+                <button type="button" onclick="agregarAcompanante()" class="mt-3 text-green-700 text-xs font-bold flex items-center hover:text-green-900">
+                    <span class="bg-green-100 p-1 rounded-full mr-2">＋</span> AÑADIR PERSONAL
                 </button>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Fecha</label>
-                    <input type="date" name="fecha" id="fechaActual" required 
-                           class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Fecha</label>
+                    <input type="date" name="fecha" id="fechaActual" required class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Libro (Guardia)</label>
-                    <select name="libro" required class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
-                        <option value="">...</option>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Guardia</label>
+                    <select name="libro" required class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 text-sm">
+                        <option value="">Seleccione...</option>
                         <option value="Primera guardia">1ra Guardia</option>
                         <option value="Segunda guardia">2da Guardia</option>
                     </select>
@@ -82,22 +65,19 @@
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Folio</label>
-                    <input type="number" name="folio" placeholder="000" 
-                           class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Folio</label>
+                    <input type="number" name="folio" placeholder="Ej: 123" class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Línea</label>
-                    <input type="number" name="linea" placeholder="000" 
-                           class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Línea</label>
+                    <input type="text" name="linea" placeholder="Ej: A-1" class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 text-sm">
                 </div>
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase mb-2 ml-1">Tipo de Servicio</label>
-                <select name="servicio" id="tipoServicio" onchange="toggleOtro(this.value)" required 
-                        class="w-full p-4 rounded-2xl bg-gray-50 border-gray-200 outline-none">
-                    <option value="">Seleccione...</option>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Tipo de Servicio</label>
+                <select name="servicio" id="tipoServicio" onchange="toggleOtro(this.value)" required class="w-full p-3 rounded-xl bg-gray-50 border-gray-200 text-sm">
+                    <option value="">Seleccione tipo...</option>
                     <option value="Vigilancia">Vigilancia</option>
                     <option value="Búsqueda de información">Búsqueda de información</option>
                     <option value="Otro">Otro (Especificar)</option>
@@ -105,20 +85,28 @@
             </div>
 
             <div id="campoOtro" class="hidden">
-                <input type="text" name="servicio_otro" id="inputOtro" placeholder="¿Qué servicio realizó?" 
-                       class="w-full p-4 rounded-2xl border-blue-200 bg-blue-50 text-blue-800 placeholder-blue-300 outline-none ring-2 ring-blue-100">
+                <input type="text" name="servicio_otro" id="inputOtro" placeholder="Describa el servicio..." class="w-full p-3 rounded-xl border-green-200 bg-green-50 text-green-900 text-sm">
             </div>
 
-            <button type="submit" id="btnEnviar" 
-                    class="w-full bg-green-700 hover:bg-green-900 text-white font-bold py-5 rounded-2xl shadow-lg transition-all btn-animate mt-6">
+            <button type="submit" id="btnEnviar" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-4 rounded-2xl shadow-lg transform active:scale-95 transition-all mt-4">
                 REGISTRAR EN PLANILLA
             </button>
         </form>
 
-        <div id="status" class="hidden p-5 text-center font-bold text-sm mx-6 mb-8 rounded-2xl"></div>
+        <div id="status" class="hidden p-4 text-center font-bold text-sm mx-6 mb-6 rounded-xl"></div>
     </div>
 
     <script>
+        // Registro del Service Worker desde archivo externo
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registrado'))
+                    .catch(err => console.log('Fallo al registrar SW', err));
+            });
+        }
+
+        // --- LÓGICA DE PERSONAL (La misma que ya funciona) ---
         const personal = [
             "TTE. CRL LEIVA CABRERA SEBASTIAN ANTONIO", "CAPITAN ALIAGA MONTOYA NICOLAS MARCELO",
             "CAPITAN ANGUITA VILLABLANCA EDUARDO ALEJANDRO", "TENIENTE MUÑOZ ESCOBAR MARTIN EDUARDO",
@@ -140,34 +128,27 @@
         ];
 
         function cargarSelect(el) {
-            el.innerHTML = '<option value="">Seleccione...</option>';
-            personal.forEach(n => { 
-                const o = document.createElement('option'); 
-                o.value = n; 
-                o.textContent = n; 
-                el.appendChild(o); 
-            });
+            el.innerHTML = '<option value="">Seleccione funcionario...</option>';
+            personal.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; el.appendChild(o); });
         }
 
         function agregarAcompanante() {
             const div = document.createElement('div');
-            div.className = 'flex gap-2 items-center animate-in slide-in-from-left duration-300';
+            div.className = 'flex gap-2 items-center';
             const sel = document.createElement('select');
             sel.name = 'acompanantes[]';
-            sel.className = 'flex-grow p-4 rounded-2xl bg-gray-50 border-gray-200 text-sm outline-none appearance-none';
+            sel.className = 'flex-grow p-3 rounded-xl bg-gray-50 border-gray-200 text-sm';
             cargarSelect(sel);
             const btn = document.createElement('button');
-            btn.type = 'button'; 
-            btn.innerHTML = '✕';
-            btn.className = 'w-12 h-12 flex items-center justify-center text-red-500 bg-red-50 rounded-2xl font-bold';
+            btn.type = 'button'; btn.innerHTML = '✕';
+            btn.className = 'w-10 h-10 flex items-center justify-center text-red-500 bg-red-50 rounded-xl font-bold';
             btn.onclick = () => div.remove();
             div.append(sel, btn);
             document.getElementById('contenedorAcompanantes').appendChild(div);
         }
 
         function toggleOtro(v) {
-            const c = document.getElementById('campoOtro');
-            c.classList.toggle('hidden', v !== 'Otro');
+            document.getElementById('campoOtro').classList.toggle('hidden', v !== 'Otro');
             document.getElementById('inputOtro').required = (v === 'Otro');
         }
 
@@ -181,37 +162,27 @@
             e.preventDefault();
             const status = document.getElementById('status');
             const btn = document.getElementById('btnEnviar');
-            
-            // TU URL DE GOOGLE APPS SCRIPT YA INTEGRADA
             const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzbKymj15p9kmBaAEkFiF7-xaaOOk2OHp0Xy0P0ddZZFAuCVsEFSNp-lZDn2h4LtLK7/exec';
 
             btn.disabled = true;
-            btn.innerText = "PROCESANDO...";
-            status.classList.remove('hidden');
-            status.className = "p-5 text-center font-bold text-sm mx-6 mb-8 rounded-2xl bg-blue-50 text-blue-700 block animate-pulse";
-            status.innerText = "Sincronizando con la nube...";
+            btn.innerText = "ENVIANDO...";
+            status.className = "p-4 text-center font-bold text-sm mx-6 mb-6 rounded-xl bg-green-50 text-green-700 block";
+            status.innerText = "Sincronizando...";
 
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
             data.acompanantes = formData.getAll('acompanantes[]');
 
-            console.log('Datos a enviar:', data);
-
             try {
-                await Promise.race([
-                    fetch(WEB_APP_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'text/plain'
-                        },
-                        body: JSON.stringify(data)
-                    }),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Tiempo de espera agotado')), 15000))
-                ]);
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'text/plain'},
+                    body: JSON.stringify(data)
+                });
 
                 status.innerText = "¡REGISTRO EXITOSO!";
-                status.className = "p-5 text-center font-bold text-sm mx-6 mb-8 rounded-2xl bg-green-50 text-green-700 block shadow-inner";
+                status.className = "p-4 text-center font-bold text-sm mx-6 mb-6 rounded-xl bg-green-600 text-white block";
                 
                 setTimeout(() => {
                     status.classList.add('hidden');
@@ -221,13 +192,12 @@
                     agregarAcompanante();
                     btn.disabled = false;
                     btn.innerText = "REGISTRAR EN PLANILLA";
-                }, 3500);
+                }, 3000);
 
             } catch (err) {
-                status.innerText = "ERROR AL ENVIAR. VERIFICA TU CONEXIÓN.";
-                status.className = "p-5 text-center font-bold text-sm mx-6 mb-8 rounded-2xl bg-red-100 text-red-800 block";
+                status.innerText = "ERROR DE ENVÍO";
+                status.className = "p-4 text-center font-bold text-sm mx-6 mb-6 rounded-xl bg-red-100 text-red-800 block";
                 btn.disabled = false;
-                btn.innerText = "REINTENTAR ENVÍO";
             }
         };
     </script>
